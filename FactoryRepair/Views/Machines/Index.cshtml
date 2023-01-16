@@ -1,0 +1,24 @@
+@{
+  Layout = "_Layout";
+}
+
+@using FactoryRepair.Models;
+
+<h1>List of Machines</h1>
+
+@if (@Model.Count == 0)
+{
+  <h3>No machines have been added to this factory yet</h3>
+  <p>@Html.ActionLink("Click here to add your first machine", "Create")</p>
+}
+
+@foreach (Machine machine in Model)
+{
+  <li>@Html.ActionLink($"{machine.MachineName}", "Details", new { id = machine.MachineId })</li>
+}
+
+@if (@Model.Count != 0)
+{
+  <p>@Html.ActionLink("Add an additional machine", "Create")</p>
+}
+<p>@Html.ActionLink("Return to the homepage", "Index", "Home")</p>

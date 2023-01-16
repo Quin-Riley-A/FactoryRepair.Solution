@@ -18,7 +18,10 @@ namespace FactoryRepair.Controllers
 
     public ActionResult Index()
     {
-      return View(_db.Machines.FactoryRepair());
+      List<Machine> model = _db.Machines
+        .Include(machine => machine.MachineName)
+        .ToList();
+      return View(model);
     }
 
     public ActionResult Details(int id)
@@ -45,7 +48,7 @@ namespace FactoryRepair.Controllers
     public ActionResult AddEngineer(int id)
     {
       Machine thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id);
-      ViewBag.MachineId = new SelectList(_db.Engineers, "EngineerId", "Name");
+      ViewBag.MachineId = new SelectList(_db.Engineers, "EngineerId", "EngineerName");
       return View(thisMachine);
     }
     [HttpPost]

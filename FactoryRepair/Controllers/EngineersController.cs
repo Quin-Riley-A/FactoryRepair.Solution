@@ -75,7 +75,7 @@ namespace FactoryRepair.Controllers
     {
       _db.Engineers.Update(engineer);
       _db.SaveChanges();
-      return RedirectToActon("Index");
+      return RedirectToAction("Index");
     }
 
     public ActionResult Delete(int id)
@@ -86,7 +86,7 @@ namespace FactoryRepair.Controllers
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineers.EngineerId == id);
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
       _db.Engineers.Remove(thisEngineer);
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -94,7 +94,7 @@ namespace FactoryRepair.Controllers
     [HttpPost]
     public ActionResult DeleteJoin(int joinId)
     {
-      EngineerMachine joinEntry = _db.EngineerMachines.FirstOrDefault(entry => entry.EngineerMachineId = joinId);
+      EngineerMachine joinEntry = _db.EngineerMachines.FirstOrDefault(entry => entry.EngineerMachineId == joinId);
       _db.EngineerMachines.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");

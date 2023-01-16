@@ -6,7 +6,7 @@ namespace FactoryRepair.Models
   {
     public DbSet<Engineer> Engineers { get; set; }
     public DbSet<Machine> Machines { get; set; }
-    public DbSet<EngineerMachine> EngineerMachine { get; set; }
+    public DbSet<EngineerMachine> EngineerMachines { get; set; }
     public FactoryRepairContext(DbContextOptions options) : base(options) { }
   }
 }

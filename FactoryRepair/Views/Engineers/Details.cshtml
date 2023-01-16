@@ -1,0 +1,35 @@
+@{
+  Layout = "_Layout";
+}
+
+@using FactoryRepair.Models
+@model FactoryRepair.Models.Engineer
+
+<h2>Machine Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.EngineerName): @Html.DisplayFor(model => model.EngineerName)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This engineer is not currently licensed to service any machines!</p>
+}
+else
+{
+  <h4>This engineer is licensed to service/repair the following machines:</h4>
+  <ul>
+  @foreach(EngineerMachine join in Model.JoinEntities)
+  {
+    <li>@join.Machine.MachineName</li>
+    @using (Html.BeginForm("DeleteJoin", "Machines"))
+    {
+      @Html.Hidden("joinId", @join.EngineerMachineId)
+      <input type="submit" value="Delete"/>
+    }
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to list of Engineers", "Index")</p>
+<p>@Html.ActionLink("Add a Machine", "AddMachine", new { id = Model.EngineerId })</p>
+<p>@Html.ActionLink("Edit current Engineer", "Edit", new { id = Model.EngineerId })</p>
+<p>@Html.ActionLink("Delete current Engineer", "Delete", new { id = Model.EngineerId })</p>

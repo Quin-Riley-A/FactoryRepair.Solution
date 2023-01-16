@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@model FactoryRepair.Models.Machine
+
+<h4>Add a new machine</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.MachineName)
+    @Html.TextBoxFor(model => model.MachineName)
+
+    <input type="submit" value="Add new tag" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Show list of all active machines", "Index")</p>
+<p>@Html.ActionLink("Return to the homepage", "Index", "Home")</p>
